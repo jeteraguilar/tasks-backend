@@ -38,10 +38,19 @@ pipeline {
          stage ('API Test') {
             steps {
                 dir('api-test') {
-                git credentialsId: 'github_login', url: 'https://github.com/jeteraguilar/tasks-api-test'
-                bat 'mvn test'
-                }
+                    git credentialsId: 'github_login', url: 'https://github.com/jeteraguilar/tasks-api-test'
+                    bat 'mvn test'
+                    }
+            }
+        }
+         stage ('Deploy Frontend') {
+            steps {
+                dir('frontend')
+                    git credentialsId: 'github_login', url: 'https://github.com/jeteraguilar/tasks-frontend'
+                    bat 'mvn clean package'
+                    deploy adapters: [tomcat8(credentialsId: 'TomcatLogin', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-frontend', war: 'target/tasks-frontend.war'
             }
         }
     }        
 }
+https://github.com/jeteraguilar/tasks-frontend

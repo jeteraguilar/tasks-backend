@@ -53,4 +53,3 @@ pipeline {
         }
     }        
 }
-https://github.com/jeteraguilar/tasks-frontend

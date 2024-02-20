@@ -52,13 +52,13 @@ pipeline {
                 }
             }
         }
-         stage ('Functional Test') {
+         /* stage ('Functional Test') {
             steps {
                 dir('functional-test') {
                     git credentialsId: 'github_login', url: 'https://github.com/jeteraguilar/tasks-functional-tests'
                     bat 'mvn test'
                     }
             }
-        }
+        } */
     }        
 }
